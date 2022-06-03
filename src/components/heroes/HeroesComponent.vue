@@ -11,6 +11,7 @@
 import { Component, Vue, Prop } from 'vue-property-decorator';
 import HeroesList from './HeroesList.vue';
 import HeroesForm from './HeroesForm.vue';
+import { Hero } from '@/models/Hero';
 
 @Component(
   {
@@ -22,10 +23,13 @@ import HeroesForm from './HeroesForm.vue';
 )
 export default class HeroesComponent extends Vue {
 
-  @Prop() public msg!: string;
-  public heroes = ['Windstorm', 'Bombasto', 'Magneta', 'Tornado'];
+  public heroes = [
+    new Hero('Windstorm', 'Stormy hero'),
+    new Hero('Bombasto', 'Bombastic hero'),
+    new Hero('Magneta', 'Magnetic hero'),
+    new Hero('Tornado', 'Tornadic hero')];
 
-  addHero(hero: any) {
+  addHero(hero: Hero) {
     this.heroes.push(hero);
   }
 
