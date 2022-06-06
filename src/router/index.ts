@@ -11,6 +11,11 @@ const routes: Array<RouteConfig> = [
     component: HeroesPage
   },
   {
+    path: "/apod",
+    name: "APOD",
+    component: () => import("../pages/ApodPage.vue")
+  },
+  {
     path: "/about",
     name: "About",
     // route level code-splitting
