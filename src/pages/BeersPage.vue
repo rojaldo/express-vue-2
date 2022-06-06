@@ -1,21 +1,21 @@
 <template>
     <div>
-        <apod-component />
+        <beers-component></beers-component>
     </div>
 </template>
 
 <script lang="ts">
     import { Component, Vue } from 'vue-property-decorator';
-    import ApodComponent from '../components/apod/ApodComponent.vue';
+    import BeersComponent from '../components/beers/BeersComponent.vue';
 
     @Component(
         {
             components: {
-                ApodComponent
+                BeersComponent
             }
         }
     )
-    export default class ApodPage extends Vue {
+    export default class BeersPage extends Vue {
         
     }
 </script>
