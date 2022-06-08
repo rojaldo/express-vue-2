@@ -47,13 +47,14 @@ export default class ApodComponent extends Vue {
     }
 
     getApod(date = '') {
-        let url = 'https://api.nasa.gov/planetary/apod?api_key=DEMO_KEY';
+        let url = 'http://localhost:3000/api/v1/apod?api_key=MY_KEY';
         if (date !== '') {
             url += '&date=' + date;
         }
         fetch(url)
             .then(response => response.json())
             .then(data => {
+                console.log(data);
                 this.apodData = data;
             })
             .catch(error => console.error(error));
