@@ -60,7 +60,7 @@ export const getApod = (req: Request, res: Response) => {
             res.status(400).json(
                 {
                     status: status,
-                    message: "Invalid date"
+                    message: "Invalid date: format must be YYYY-MM-DD"
                 }
             );
             break;

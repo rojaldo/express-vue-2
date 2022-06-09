@@ -23,14 +23,34 @@ import { Hero } from '@/models/Hero';
 )
 export default class HeroesComponent extends Vue {
 
-  public heroes = [
-    new Hero('Windstorm', 'Stormy hero'),
-    new Hero('Bombasto', 'Bombastic hero'),
-    new Hero('Magneta', 'Magnetic hero'),
-    new Hero('Tornado', 'Tornadic hero')];
+  public heroes: Hero[] = [];
 
   addHero(hero: Hero) {
-    this.heroes.push(hero);
+    // this.heroes.push(hero);
+    fetch('http://localhost:3000/api/v1/heroes', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        "Access-Control-Allow-Origin": "*",
+        "Access-Control-Allow-Methods": "GET, POST, PATCH, PUT, DELETE, OPTIONS",
+        "Access-Control-Allow-Headers": "Origin, Content-Type, X-Auth-Token",
+        "Access-Control-Allow-Credentials": "true"
+
+      },
+      body: JSON.stringify(hero)
+    }
+    ).then(response => response.json())
+      .then(data => {
+        this.heroes = data;
+      });
+  }
+
+  mounted() {
+    fetch('http://localhost:3000/api/v1/heroes')
+      .then(response => response.json())
+      .then(data => {
+        this.heroes = data;
+      });
   }
 
 }
