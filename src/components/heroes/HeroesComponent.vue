@@ -30,14 +30,9 @@ export default class HeroesComponent extends Vue {
     fetch('http://localhost:3000/api/v1/heroes', {
       method: 'POST',
       headers: {
-        'Content-Type': 'application/json',
-        "Access-Control-Allow-Origin": "*",
-        "Access-Control-Allow-Methods": "GET, POST, PATCH, PUT, DELETE, OPTIONS",
-        "Access-Control-Allow-Headers": "Origin, Content-Type, X-Auth-Token",
-        "Access-Control-Allow-Credentials": "true"
-
+        'Content-Type': 'application/json'
       },
-      body: JSON.stringify(hero)
+      body: JSON.stringify(hero.toJson())
     }
     ).then(response => response.json())
       .then(data => {

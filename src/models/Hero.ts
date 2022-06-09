@@ -14,4 +14,11 @@ export class Hero {
     set description(value: string) {
         this._description = value;
     }
+
+    toJson(): any {
+        return {
+            name: this.name,
+            description: this.description
+        };
+    }
 }

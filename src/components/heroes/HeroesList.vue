@@ -18,7 +18,20 @@ export default class HeroesList extends Vue {
     @Prop() public myHeroes!: Hero[];
 
     removeHero(index: number) {
-        this.myHeroes.splice(index, 1);
+        fetch('http://localhost:3000/api/v1/heroes/' + this.myHeroes[index].name, {
+            method: 'DELETE'
+        }).then(response => {
+            if (response.status === 200) {
+                response.json().then(data => {
+                    console.log(data);
+                    this.myHeroes.splice(index, 1);
+                })
+            } else {
+                console.error('Error deleting hero');
+            }
+        })
+            ;
+
     }
 }
 </script>
