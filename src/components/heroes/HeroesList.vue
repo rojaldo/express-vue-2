@@ -16,22 +16,22 @@ import { Component, Vue, Prop } from 'vue-property-decorator';
 @Component
 export default class HeroesList extends Vue {
     @Prop() public myHeroes!: Hero[];
+    @Prop() public onRemoveHero!: Function;
 
     removeHero(index: number) {
+        // send hero name in path to server
         fetch('http://localhost:3000/api/v1/heroes/' + this.myHeroes[index].name, {
             method: 'DELETE'
         }).then(response => {
-            if (response.status === 200) {
-                response.json().then(data => {
-                    console.log(data);
-                    this.myHeroes.splice(index, 1);
-                })
-            } else {
-                console.error('Error deleting hero');
+            if(response.status === 200) {
+                this.$emit('onRemoveHero', index);
             }
-        })
-            ;
-
+            return response.json()})
+            .then(data => {
+                console.log(data);
+                
+                
+            });
     }
 }
 </script>

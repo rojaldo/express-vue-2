@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <heroes-form @onAddHero="addHero($event)" />
-    <heroes-list :myHeroes="heroes"></heroes-list>
+    <heroes-list :myHeroes="heroes" @onRemoveHero="removeHero($event)"></heroes-list>
   </div>
 
 </template>
@@ -40,7 +40,16 @@ export default class HeroesComponent extends Vue {
       });
   }
 
+  removeHero(index: number) {
+    this.heroes.splice(index, 1);
+    // this.getHeroesList()
+  }
+
   mounted() {
+    this.getHeroesList()
+  }
+
+  getHeroesList() {
     fetch('http://localhost:3000/api/v1/heroes')
       .then(response => response.json())
       .then(data => {
