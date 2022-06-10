@@ -16,10 +16,6 @@ app.use(express.json());
 
 app.set("port", process.env.PORT || 3000);
 
-// const pgp = require("pg-promise")(/*options*/);
-// export const db = pgp("postgres://postgres:postgres@localhost:5432/database");
-    
-
 // CORS
 app.use(cors())
 
